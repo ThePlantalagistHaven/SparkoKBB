@@ -1,0 +1,2919 @@
+
+;===============================================================================
+;----------------------Specials-------------------------------------------------
+;===============================================================================
+; Lightning Strike (236A)
+;-------------------------------------------------------------------------------
+[Statedef 21000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 21000
+velset = 0,0
+sprpriority = 2
+poweradd = -1000
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,17+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 0
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = time%4 = 0
+trigger1 = 1
+attr = A, SA
+animtype  = Medium
+damage    = 7
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 1,10
+guard.pausetime = 10,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,4
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -5,0
+guard.velocity = -2
+air.velocity = -10,0
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+trigger1 = AnimElem = 9
+attr = A, SA
+animtype  = Heavy
+damage    = 13
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 1,10
+guard.pausetime = 10,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -10,0
+guard.velocity = -2
+air.velocity = -10,0
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+kill = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) <= 179
+trigger1 = AnimElem = 4
+name = "SUPA LIGHTNING"
+ID = 21001
+stateno = 21001
+pos = 10,20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 180 && map(energyLevel) <= 359
+trigger1 = AnimElem = 4
+name = "SUPA LIGHTNING2"
+ID = 21005
+stateno = 21005
+pos = 10,20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+trigger1 = AnimElem = 4
+name = "SUPA LIGHTNING3"
+ID = 21010
+stateno = 21010
+pos = 10,20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 0, Viento]
+type = Explod
+triggerall = numexplod(130) = 0
+trigger1 = time = 0
+anim = 330
+ID = 330
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 0
+bindtime = -1
+removetime = 20
+scale = 1.1,1.1
+vel = 0,0
+sprpriority = 3
+ontop = 1
+ownpal = 1
+removeongethit = 1
+trans = add
+
+[State 0, EnergySet]
+type = MapSet
+trigger1 = AnimTime = 0
+map = "energyLevel"
+value = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------
+;Super Lightning
+[Statedef 21001]
+type = S
+movetype= A
+physics = S
+anim = 21001
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 17
+hitflag = MAFD
+guardflag = MAF
+pausetime = 1,50
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 20
+hitflag = MAFD
+guardflag = MAF
+pausetime = 5,65
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 3
+
+;------------------------------------------------------------------------------
+;Superb Lightning
+[Statedef 21005]
+type = S
+movetype= A
+physics = S
+anim = 21005
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 17
+hitflag = MAFD
+guardflag = MAF
+pausetime = 3,5
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 17
+hitflag = MAFD
+guardflag = MAF
+pausetime = 15,65
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 7
+
+;------------------------------------------------------------------------------
+;Supa Lightning
+[Statedef 21010]
+type = S
+movetype= A
+physics = S
+anim = 21010
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 15
+hitflag = MAFD
+guardflag = MAF
+pausetime = 3,5
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 22
+hitflag = MAFD
+guardflag = MAF
+pausetime = 15,65
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 10
+
+
+;===============================================================================
+; Awakening Pulse
+;-------------------------------------------------------------------------------
+[Statedef 22000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 22000
+velset = 0,0
+sprpriority = 2
+poweradd = -1000
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, DP INVINCIBILLITY BABY]
+type = NotHitBy
+trigger1 = time =0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 10
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 10
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = S5,2
+volumescale = 100
+channel = 0
+
+[State 0, DP VFX]
+type = Explod
+trigger1 = AnimElem = 2
+anim = 22100
+ID = 22100
+pos = 15,15
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 20
+vel =0,0
+accel = 0,0
+random = 0,0
+removetime = -2
+pausemovetime = 0
+scale = 1,1
+sprpriority = 0
+ontop = 1
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 1
+
+[State 200, 1]
+type = HitDef
+triggerall=AnimElem = 3 || AnimElem = 4
+trigger1 = 1
+attr = S, NA
+animtype  = Medium
+damage    = 5
+hitflag = MAFD
+guardflag = MAF
+pausetime = 5,5
+guard.pausetime = 1,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -1,-10.5
+air.velocity = 1,-10
+Fall = 0
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 6
+x = p2bodydist x + 2
+y = p2bodydist y - 2
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = S23000,3
+channel = 22020
+volumescale = 500
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = AnimElem = 12
+channel = 22020
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem=6||AnimElem=7||AnimElem=8||AnimElem=9||AnimElem=10||AnimElem=11||AnimElem=12
+y = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=AnimElem=6||AnimElem=7||AnimElem=8||AnimElem=9||AnimElem=10||AnimElem=11||AnimElem=11
+trigger1 = 1
+attr = S, NA
+animtype  = Medium
+damage    = 5
+hitflag = MAFD
+guardflag = MAF
+pausetime = 1,17
+guard.pausetime = 1,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = 0,0
+Fall = 0
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=AnimElem=12
+trigger1 = 1
+attr = S, NA
+animtype  = Medium
+damage    = 50
+hitflag = MAFD
+guardflag = MAF
+pausetime = 17,36
+guard.pausetime = 12,5
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = 0,0
+Fall = 0
+kill = 1
+Envshake.time = 35
+fall.recover = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+triggerall = movecontact && !moveguarded
+trigger1 = AnimTime = 0
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 200, Cancel into j236B]	
+type = ChangeState
+triggerall = AnimElem >= 8
+triggerall = command = "SPECIAL 3"
+trigger1 = power >= 1000
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+trigger1 = hitcount = 8
+value = 23000
+ctrl = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = Animtime = 0
+value = 50
+ctrl = 1
+
+;===============================================================================
+; Blitz SmashDown
+;-------------------------------------------------------------------------------
+[Statedef 23000]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+ctrl = 0
+anim = 23000
+poweradd = -500
+velset = 0,0
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,14
+volumescale = 400
+channel = 0
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
+
+[State 200, Damage Proration]
+type = VarAdd
+trigger1 = movehit ;If the Attack Hits...
+v = 11 
+ignorehitpause = 1 
+persistent = 0 
+value = 5
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 30
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, PosSet]
+type = PosSet
+triggerall = pos y > 0
+trigger1 = 1
+y = 0
+
+[State 0, TargetBind]
+type = TargetBind
+triggerall = AnimElem = 1
+trigger1 = movehit
+time = 1
+pos = 50,0
+persistent = 0
+
+;[State 0, PlaySnd]
+;type = PlaySnd
+;trigger1 = Time = 11
+;value = S4,2
+;volumescale = 999
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = Animelem = 2
+trigger1 = 1
+attr = A, SA
+animtype  = Heavy
+damage    = 10
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 10,100
+guard.pausetime = 10,5
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,0
+guard.velocity = -2
+airguard.velocity = -4, -3
+air.velocity = 0,2
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+[State 200, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 50
+ctrl = 1
+
+[State 200, End2]
+type = ChangeState
+triggerall = movehit
+trigger1 = 1
+value = 23005
+ctrl = 1
+
+;===============================================================================
+; Blitz SmashDown Success
+;-------------------------------------------------------------------------------
+[Statedef 23005]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+ctrl = 0
+anim = 23005
+poweradd = 100
+velset = 0,0
+sprpriority = 2
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
+
+[State 200, Damage Proration]
+type = VarAdd
+trigger1 = movehit ;If the Attack Hits...
+v = 11 
+ignorehitpause = 1 
+persistent = 0 
+value = 5
+
+;[State 0, SuperPause]
+;type = SuperPause
+;trigger1 = Time = 1
+;time = 30
+;sound = 20,0
+;pos = 0,-20
+;movetime = 0
+;darken = 1
+;p2defmul = 1
+;poweradd = 0
+
+[State 0, PosSet]
+type = PosSet
+triggerall = pos y > 0
+trigger1 = 1
+y = 0
+
+[State 0, TargetBind]
+type = TargetBind
+triggerall = AnimElem = 2 || AnimElem = 3 || AnimElem = 4
+trigger1 = movecontact
+time = 1
+pos = 30,0
+persistent = 0
+
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = AnimElem = 2 || AnimElem = 3 || AnimElem = 4
+value = 0
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = Animelem <= 2
+trigger1 = 1
+attr = A, SA
+animtype  = Heavy
+damage    = 10
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 10,30
+guard.pausetime = 1,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,0
+guard.velocity = -2
+airguard.velocity = -4, -3
+air.velocity = 0,-12
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = Animelem = 3
+trigger1 = 1
+attr = A, SA
+animtype  = Heavy
+damage    = 10
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 10,30
+guard.pausetime = 1,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 5,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,20
+guard.velocity = -2
+airguard.velocity = -4, -3
+air.velocity = 0,50
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = Animelem = 5
+trigger1 = 1
+attr = A, SA
+animtype  = Heavy
+damage    = 10
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 30,30
+guard.pausetime = 1,1
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,20
+guard.velocity = -2
+airguard.velocity = -4, -3
+air.velocity = 0,20
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+[State 0, ChangeAnim]
+type = ChangeAnim
+triggerall = pos y < 0
+trigger1 = AnimElem = 5
+value = 23005
+elem = 5
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 180 && map(energyLevel) <= 359
+trigger1 = AnimElem = 6
+name = "SUPA LIGHTNING"
+ID = 21001
+stateno = 21001
+pos = 0,20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+trigger1 = AnimElem = 6
+name = "SUPA LIGHTNING2"
+ID = 21005
+stateno = 21005
+pos = 0,20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 5
+x = 1.5
+y = 20
+
+[State 0, EnergySet]
+type = MapSet
+trigger1 = AnimTime = 0
+map = "energyLevel"
+value = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 7
+y = -5
+
+[State 200, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 50
+ctrl = 1
+
+;-------------------------------------------------------------------------------
+; Electric Beyblade
+;===============================================================================
+[Statedef 24000]
+type    = S
+movetype= A
+juggle  = 2
+velset = 0,0
+sprpriority = 0
+ctrl = 0
+anim = 24000
+poweradd = -1000
+velset = 0,0
+sprpriority = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,15+(random<500)*1
+volumescale = 200
+channel = 0
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 =  Time = 0
+time =  15
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 10
+time = 80
+length = 5
+
+
+[State 0, PowerAdd]
+type = PowerAdd
+trigger1 = movecontact
+value = 5
+
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 2
+x = -5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 10
+x = 18
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = time%2 = 0
+trigger1 = 1
+attr = S, SA
+animtype  = Light
+damage    = 3
+hitflag = MAFD
+guardflag = MA
+pausetime = 2,4
+guard.pausetime = 4,2
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15 + ifelse(enemy,movetype = A || movecountered, 7,0)
+ground.velocity = 0,0
+guard.velocity = 5
+air.velocity = 0,0
+Fall = 1
+fall.recover =  0
+Envshake.time = 10
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+trigger1 = AnimElem = 15
+triggerall = movecontact
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = Time = 60
+value = 24001
+ctrl = 1
+
+;===============================
+;Electric Beyblade Finish
+;===============================
+[Statedef 24001]
+type    = S
+movetype= A
+juggle  = 2
+velset = 0,0
+sprpriority = 0
+ctrl = 0
+anim = 24001
+poweradd = 0
+velset = 0,0
+sprpriority = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 1
+x = -1
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+getpower = 0
+triggerall= !movecontact
+trigger1 = 1
+attr = S, SA
+animtype  = Light
+damage    = 35
+hitflag = MAFD
+guardflag = MA
+pausetime = 2,4
+guard.pausetime = 4,2
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = s0,4
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15 + ifelse(enemy,movetype = A || movecountered, 7,0)
+ground.velocity = -5,-5
+guard.velocity = 5
+air.velocity = -5,-5
+Fall = 1
+fall.recover =  1
+Envshake.time = 10
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+triggerall = movecontact && !moveguarded
+trigger1 = 1
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+triggerall = movecontact && !moveguarded
+trigger1 = 1
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+triggerall = movecontact && !moveguarded
+trigger1 = 1
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;===============================================================================
+; The Full Awakening
+;-------------------------------------------------------------------------------
+[Statedef 25000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 25000
+velset = 0,0
+sprpriority = 2
+poweradd = -2000
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,23+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 0
+
+[State 0, I'm gonna do an unblockable attack!]
+type = Explod
+trigger1 = time = 1
+anim = F30000
+id = 30000
+pos = -30, -50
+postype = p1
+bindtime = -1
+vel = 0,0
+accel = 0,0
+random = 0,0
+pausemovetime = 999
+supermovetime = 999
+ontop = 0
+shadow = 0,0,0
+removeongethit = 0
+ignorehitpause = 1
+facing = 1
+vfacing = 1
+scale = 0.6,0.6
+sprpriority = 5
+removetime = -2
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+length = 20
+trans = add
+
+
+[State 0, Backwards Velset RAW]
+type = VelSet
+trigger1 = Animelem = 1
+x = -9
+y = 0
+[State 0, Forward Velset]
+type = VelSet
+trigger1 = AnimElem = 2
+x = 17
+y = 0
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = movecontact
+time = 1
+id = -1
+pos = 40,0
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = AnimElem = 2
+triggerall = enemy,stateno != 150 && enemy,stateno != 151 && enemy,stateno != 152 && enemy,stateno != 153 && enemy,stateno != 155 && enemy,stateno != 156
+trigger1 = enemy,anim != 40 && P2statetype != A
+trigger2 = P2MoveType = H
+attr = S, SA
+animtype  = Heavy
+damage    = 70
+hitflag = MAFD 
+pausetime = 0,100
+guard.pausetime = 12,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S4,4
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 0,0
+air.velocity = -0,0
+Fall = 1
+Envshake.time = 20
+fall.recover = 0
+p2stateno = 5020
+p2getp1state = 0
+kill = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = movecontact
+value = 25005
+ctrl = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;===============================================================================
+; "TFA Part One":
+;-------------------------------------------------------------------------------
+[Statedef 25005]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 25005
+velset = 2,0
+sprpriority = 2
+poweradd = 0
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, Damage Proration]
+type = VarAdd
+trigger1 = movehit
+v = 11
+ignorehitpause = 1
+persistent = 0
+value = 50
+
+[State 0, Helper]
+type = Helper
+trigger1 = AnimTime = 0
+helpertype = normal ;player
+name = "Power Delay"
+ID = 56000
+stateno = 56000
+pos = 9999,9999
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermovetime = 0
+pausemovetime = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = S0,1
+volumescale = 999
+
+[State 0, PlayerPush] ;Disables Collision when time is greater than 15 (So characters can move through each other)
+type = PlayerPush
+trigger1 = time > 15
+value = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+length = 20
+trans = add
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !(Animelem = 15)
+triggerall = time%2= 0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 5
+hitflag = MAF
+pausetime = 5,22
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 20,5 
+guard.velocity = -3
+air.velocity = 20,5
+Fall = 0
+kill=0
+Envshake.time = 30
+fall.recover = 0
+p2stateno = 1025
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 25010
+ctrl = 1
+
+;===============================================================================
+; "TFA Part Two":
+;-------------------------------------------------------------------------------
+[Statedef 25010]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 25010
+velset = 2,0
+sprpriority = 2
+poweradd = 0
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, Damage Proration]
+type = VarAdd
+trigger1 = movehit
+v = 11
+ignorehitpause = 1
+persistent = 0
+value = 50
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2dist x < 0
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 1
+x = p2bodydist x + 2
+y = p2bodydist y - 2
+
+[State 0, Forward Velset]
+type = VelSet
+trigger1 = movecontact
+x = 0
+y = -1
+
+[State 0, Helper]
+type = Helper
+trigger1 = AnimTime = 0
+helpertype = normal ;player
+name = "Power Delay"
+ID = 56000
+stateno = 56000
+pos = 9999,9999
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermovetime = 0
+pausemovetime = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1;AnimElem = 2
+value = S23000,2
+volumescale = 1999
+
+[State 0, PlayerPush] ;Disables Collision when time is greater than 15 (So characters can move through each other)
+type = PlayerPush
+trigger1 = time > 15
+value = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+length = 20
+trans = add
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !(Animelem = 15)
+triggerall = time%8= 0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 1
+hitflag = MAF
+pausetime = 0,22
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,3
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -20,5 
+guard.velocity = -3
+air.velocity = -20,5
+Fall = 0
+kill = 0
+Envshake.time = 30
+fall.recover = 0
+p2stateno = 1025
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 25015
+ctrl = 1
+
+;===============================================================================
+; "TFA Part Three":
+;-------------------------------------------------------------------------------
+[Statedef 25015]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 25015
+velset = 2,0
+sprpriority = 2
+poweradd = 0
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, Damage Proration]
+type = VarAdd
+trigger1 = movehit
+v = 11
+ignorehitpause = 1
+persistent = 0
+value = 50
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2dist x < 0
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 1
+x = p2bodydist x - 80
+y = p2bodydist y + 10
+
+[State 0, Helper]
+type = Helper
+trigger1 = AnimTime = 0
+helpertype = normal ;player
+name = "Power Delay"
+ID = 56000
+stateno = 56000
+pos = 9999,9999
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermovetime = 0
+pausemovetime = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 1;AnimElem = 2
+value = S23000,2
+volumescale = 1999
+
+[State 0, PlayerPush] ;Disables Collision when time is greater than 15 (So characters can move through each other)
+type = PlayerPush
+trigger1 = time > 15
+value = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+length = 20
+trans = add
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !(Animelem = 15)
+triggerall = time%2= 0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 20
+hitflag = MAF
+pausetime = 0,22
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 20,7 
+guard.velocity = -3
+air.velocity = 20, 7
+Fall = 0
+kill = 0
+Envshake.time = 30
+fall.recover = 0
+p2stateno = 1025
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 25020
+ctrl = 1
+
+;===============================================================================
+; "TFA Part Finale":
+;-------------------------------------------------------------------------------
+[Statedef 25020]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 25020
+velset = 2,0
+sprpriority = 2
+poweradd = 0
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, Damage Proration]
+type = VarAdd
+trigger1 = movehit
+v = 11
+ignorehitpause = 1
+persistent = 0
+value = 50
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2dist x < 0
+
+[State 0, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 1
+x = p2bodydist x + 40
+y = p2bodydist y + 10
+
+[State 0, Helper]
+type = Helper
+trigger1 = AnimTime = 0
+helpertype = normal ;player
+name = "Power Delay"
+ID = 56000
+stateno = 56000
+pos = 9999,9999
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermovetime = 0
+pausemovetime = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = S23000,2
+volumescale = 1999
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = S23000,3
+channel = 23020
+volumescale = 500
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) <= 179
+trigger1 = AnimElem = 6
+name = "Finale LIGHTNING"
+ID = 25040
+stateno = 25040
+pos = 10,40
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 180 && map(energyLevel) <= 359
+trigger1 = AnimElem = 6
+name = "Finale LIGHTNING2"
+ID = 25045
+stateno = 25045
+pos = 10,40
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+trigger1 = AnimElem = 6
+name = "Finale LIGHTNING3"
+ID = 25050
+stateno = 25050
+pos = 10,40
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = AnimElem = 30
+channel = 23020
+
+[State 0, PlayerPush] ;Disables Collision when time is greater than 15 (So characters can move through each other)
+type = PlayerPush
+trigger1 = time > 15
+value = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+length = 20
+trans = add
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = AnimElem = 1 || AnimElem = 2 || AnimElem = 3 || AnimElem = 4 || AnimElem = 5 || AnimElem = 6 || AnimElem = 7 || AnimElem = 8
+triggerall = time%2= 0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 1
+hitflag = MAF
+pausetime = 0,220
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,4
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 20,7 
+guard.velocity = -3
+air.velocity = 20, 7
+Fall = 0
+kill = 0
+Envshake.time = 30
+fall.recover = 0
+p2stateno = 1025
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = Animelem = 30 || Animelem = 31 || Animelem = 32
+triggerall = time%2= 0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 1000
+hitflag = MAF
+pausetime = 110,100
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 8,0
+ground.type = High
+ground.slidetime = 100
+ground.hittime  = 100
+ground.velocity = -10,100 
+guard.velocity = -3
+air.velocity = -10, 100
+Fall = 1
+fall.recover = 0
+p2stateno = 1030
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 30
+time = 100
+freq = 10
+ampl = -50
+
+[State 0, WonBySuper]
+type = MapAdd
+trigger1 = AnimElem = 33 && enemy, life = 0
+map = "wonbySuper"
+value = 1
+
+[State 0, EnergySet]
+type = MapSet
+trigger1 = AnimTime = 0
+map = "energyLevel"
+value = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------
+;Super Lightning
+[Statedef 25040]
+type = S
+movetype= A
+physics = S
+anim = 21001
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 5
+hitflag = MAFD
+guardflag = MAF
+pausetime = 1,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 15
+hitflag = MAFD
+guardflag = MAF
+pausetime = 5,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 3
+
+;------------------------------------------------------------------------------
+;Superb Lightning
+[Statedef 25045]
+type = S
+movetype= A
+physics = S
+anim = 21005
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 8
+hitflag = MAFD
+guardflag = MAF
+pausetime = 3,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 15
+hitflag = MAFD
+guardflag = MAF
+pausetime = 15,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 7
+
+;------------------------------------------------------------------------------
+;Supa Lightning
+[Statedef 25050]
+type = S
+movetype= A
+physics = S
+anim = 21010
+sprpriority = 2
+velset = 0, 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = movecontact
+y = -1
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 8
+hitflag = MAFD
+guardflag = MAF
+pausetime = 3,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time=9
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage    = 16
+hitflag = MAFD
+guardflag = MAF
+pausetime = 15,150
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,5
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 1
+kill = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time = 10
+
+;===============================================================================
+; Spirit Bomber
+;-------------------------------------------------------------------------------
+[Statedef 26000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 26000
+velset = 0,0
+sprpriority = 2
+poweradd = -2000
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,20+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = S23000,3
+channel = 260001
+volumescale = 500
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = AnimElem = 15
+channel = 260001
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = time%4 = 0
+trigger1 = 1
+attr = A, SA
+animtype  = Medium
+damage    = 1
+hitflag = MAFD
+guardflag = MAFD
+pausetime = 1,10
+guard.pausetime = 10,2
+sparkno = 1
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,4
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 4,-15
+guard.velocity = -2
+air.velocity = 4,-15
+Fall = 0
+Fall.recover = 0
+down.bounce = 1
+down.velocity = -5,-5
+Envshake.time = 25
+
+
+[State 21000, Helper Summon]
+Type = Helper
+trigger1 = AnimElem = 6
+name = "SPIRIT BOMB"
+ID = 26005
+stateno = 26005
+pos = 0,-20
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 0
+pausemovetime = 0
+
+[State 0, Viento]
+type = Explod
+triggerall = numexplod(130) = 0
+trigger1 = time = 0
+anim = 330
+ID = 330
+pos = 0,0
+postype = p1
+facing = 1
+vfacing = 0
+bindtime = -1
+removetime = 20
+scale = 1.1,1.1
+vel = 0,0
+sprpriority = 3
+ontop = 1
+ownpal = 1
+removeongethit = 1
+trans = add
+
+[State 0, PosAdd]
+type = PosSet
+trigger1 = AnimElem = 13
+x = pos x + 2
+y = 0
+
+[State 0, WonBySuper]
+type = MapAdd
+trigger1 = AnimElem = 13 && enemy, life = 0
+map = "wonbySuper"
+value = 1
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------
+;Spirit Bomb!!!
+[Statedef 26005]
+type = S
+movetype= A
+physics = S
+anim = 26005
+sprpriority = 2
+velset = 0, 0
+
+[State 0, TargetBind]
+type = TargetBind
+trigger1 = movecontact
+time = 1
+id = -1
+pos = 0,0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = -16
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 10
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+triggerall = root, stateno != 26000
+trigger1 = time >= 55
+x = 0
+y = 4.4
+
+[State 0, VelSet]
+type = VelSet
+triggerall = root, stateno = 26000
+trigger1 = time >= 55
+x = 2
+y = 4.4
+
+[State 200, 1]
+type = HitDef
+triggerall=time%5=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 12/(1+(time/150))
+hitflag = MAFD
+guardflag = MAF
+pausetime = 2,50
+guard.pausetime = 1,1
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-14.5
+air.velocity = -4,-14
+Fall = 1
+down.bounce = 1
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, Helper Die]
+type = ChangeState
+trigger1 = pos y > 0
+value = 26006
+
+;------------------------------------------------------------------------------
+;Spirit Bomb Ending!!!
+[Statedef 26006]
+type = S
+movetype= A
+physics = S
+anim = 26006
+sprpriority = 2
+velset = 0, 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,0
+channel = 26006
+volumescale = 100
+
+[State 0, Dest]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;--------------------------------------------------------------
+;Shocking Counter Start
+[Statedef 27000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 27000
+velset = 0,0
+sprpriority = 2
+poweradd = -500
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = AnimElem = 1
+time = 20
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = AnimElem = 1
+attr = SCA, AA, AP, AT
+slot = 0
+stateno = 27005
+time = 20
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,17+(random<500)*1+(random<500)*1
+volumescale = 400
+channel = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 27001
+ctrl = 1
+
+;--------------------------------------------------------------
+;ShockCounter Failed
+[Statedef 27001]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 27001
+velset = 0,0
+sprpriority = 2
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;--------------------------------------------------------------
+;ShockCount Success
+[Statedef 27005]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 27005
+velset = 0,0
+sprpriority = 2
+poweradd = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = S23000,0
+volumescale = 200
+channel = 0
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, Viento]
+type = Explod
+triggerall = numexplod(130) = 0
+trigger1 = time = 5
+anim = 27008
+ID = 27008
+pos = 0,-20
+postype = p1
+facing = 1
+vfacing = 0
+bindtime = -1
+removetime = 20
+scale = 1.1,1.1
+vel = 0,0
+sprpriority = 0
+ontop = 1
+ownpal = 1
+removeongethit = 1
+trans = add
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 5
+hitflag = MAFD
+guardflag = MAF
+pausetime = 2,50
+guard.pausetime = 4,1
+pausetime = 8,2
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 21000, Helper Summon]
+Type = Helper
+triggerall = map(energyLevel) >= 360
+triggerall = movecontact && !moveguarded
+trigger1 = time = 4
+triggerall = numhelper(27009) < 5
+name = "Shock Status"
+ID = 27009
+stateno = 27009
+pos = 0,-20
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 10
+supermovetime = 0
+pausemovetime = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 1
+time = 20
+
+[State 0, EnergySet]
+type = MapAdd
+trigger1 = time = 2
+map = "energyLevel"
+value = 380
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------
+;State of Shock
+[Statedef 27009]
+type = S
+movetype= A
+physics = S
+anim = 27009
+sprpriority = 0
+
+;[State 0, Viento]
+;type = Explod
+;triggerall = numexplod(130) = 0
+;trigger1 = numexplod(27009) < 1
+;anim = 27009
+;ID = 27009
+;pos = 0,-20
+;postype = p2
+;facing = 1
+;vfacing = 0
+;bindtime = -1
+;removetime = 127*5
+;scale = 0.8,0.8
+;vel = 0,0
+;sprpriority = 1
+;ontop = 1
+;ownpal = 0
+;removeongethit = 1
+
+;[State 0, VelSet]
+;type = VelSet
+;trigger1 = AnimElem = 5
+;x=2*time
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+x = enemy, pos x - 0
+y = enemy, pos y - 20
+
+;[State 200, 1]
+;type = HitDef
+;triggerall=time%127 = 0
+;trigger1 = 1
+;attr = S, SA
+;animtype  = Heavy
+;damage    = 1 + root,map(energyLevel)/120
+;hitflag = MAFD
+;guardflag =
+;pausetime = 1,30
+;sparkno = 0
+;guard.sparkno = 13000
+;sparkxy = -8,-25
+;hitsound   = S3,0
+;guardsound = S2,0
+;ground.type = High
+;ground.slidetime = 812
+;ground.hittime  = 15
+;ground.velocity = -1,-2.5
+;air.velocity = -1,-2
+;Fall = 0
+;kill=0
+;;Envshake.time = 35
+;fall.recover = 0
+;;p2stateno = 1030
+;forcestand = 1
+
+[State 200, 1]
+type = HitDef
+triggerall = root, stateno != 25005 || root,stateno != 25010 || root,stateno != 25015 || root,stateno != 25020 || root,stateno != 24000 || root,stateno != 24001 || root,stateno != 26000
+triggerall=time%127 = 0
+trigger1 = 1
+attr = S, NA
+animtype  = Light
+damage    = 1 + Random*2/120
+hitflag = MAFD
+guardflag = 
+pausetime = 0,ifelse(random>100,35,0)
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 0
+ground.hittime  = 0
+ground.velocity = 0,0
+air.velocity = 0, 0
+;Fall = 0
+kill=1
+;Envshake.time = 35
+;fall.recover = 0
+;p2stateno = 1030
+;forcestand = 1
+
+[State 0, Plasma Indicator Killer - Level 3]
+type = RemoveExplod
+trigger1 = time > (127+127)
+id = 27009
+;ignorehitpause = 1
+
+;[State 0, Helper Hit]
+;type = RootMapAdd
+;trigger1 = enemy, life = 0 
+;map = "wonBySuper"
+;value = 1
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = time > (127+127)
+trigger2 = root,stateno = 25005 || root,stateno = 25010 || root,stateno = 25015 || root,stateno = 25020 || root,stateno = 24000 || root,stateno = 24001 || root,stateno = 26000
+trigger3 = movecountered
+
+;--------------------------------------------------------------
+;Sparkamehaha Seizure
+[Statedef 28000]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 28000
+velset = 0,0
+sprpriority = 2
+poweradd = -3000
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, Reset to Be Fair]
+type = parentMapSet
+trigger1 = AnimElem = 1
+map = "energyLevel"
+value = 0
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = 1
+time = 20
+freq = 10
+ampl = -10
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 10
+sound = 20,0
+pos = 0,-20
+movetime = 0
+darken = 1
+p2defmul = 1
+poweradd = 0
+
+[State 0, Viento]
+type = Explod
+triggerall = numexplod(130) = 0
+trigger1 = time = 0
+anim = 28004
+ID = 28004
+pos = 0,-20
+postype = p1
+facing = 1
+vfacing = 0
+bindtime = -1
+removetime = 25
+scale = 1.5,1.5
+vel = 0,0
+sprpriority = 6
+ontop = 1
+ownpal = 1
+removeongethit = 1
+;trans = add
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 1
+time = 20
+
+[State 200, End]
+type = ChangeState
+trigger1 = time = 16*4
+value = 28001
+ctrl = 1
+
+;--------------------------------------------------------------
+;Sparkamehaha Success
+[Statedef 28001]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 28001
+velset = 0,0
+sprpriority = 2
+poweradd = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = S200,27
+volumescale = 400
+channel = 0
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = S23000,3
+channel = 280001
+volumescale = 500
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = 1
+v = 15
+value = 1
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 1
+time = 100
+freq = 10
+ampl = -10
+
+
+[State 21000, Helper Summon]
+Type = Helper
+trigger1 = AnimElem = 1
+name = "SUPA LIGHTNING"
+ID = 28002
+stateno = 28002
+pos = 20,-20
+postype = p1   ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+size.height = 180
+supermovetime = 9999999999999999999999999999999999999999
+pausemovetime = 0
+
+[State 0, VarSet]
+type = VarAdd
+trigger1 = 1
+v = 53
+value = 1
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = Time = 1
+time = 99
+sound = 20,0
+pos = 0,-20
+movetime = 95
+darken = 1
+p2defmul = 0
+poweradd = 0
+
+[State 200, 1]
+type = HitDef
+triggerall=time>=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 5
+hitflag = MAFD
+guardflag = MAF
+pausetime = 2,50
+pausetime = 8,2
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+Envshake.time = 35
+fall.recover = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 1
+time = 20
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = AnimElem = 9
+channel = 280001
+
+[State 0, WonBySuper]
+type = MapAdd
+trigger1 = AnimElem = 13 && enemy, life = 0
+map = "wonbySuper"
+value = 1
+
+[State 0, EnergySet]
+type = MapSet
+trigger1 = AnimTime = 13
+map = "energyLevel"
+value = 0
+
+[State 200, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;------------------------------------------------------------------------------
+;Sparkamehaha Chargo
+[Statedef 28002]
+type = S
+movetype= A
+physics = S
+anim = 28012
+sprpriority = 2
+velset = 0, 0
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 30
+time = 100
+freq = 30
+ampl = -30
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+x = root, pos x + 20
+y = root, pos y - 20
+
+[State 200, 1]
+type = HitDef
+triggerall = time > 20 && time < 91
+triggerall=time%3=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 1
+hitflag = MAFD
+guardflag = MAF
+pausetime = 0,50
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -4,-4.5
+air.velocity = -4,-4
+Fall = 0
+kill=0
+;Envshake.time = 35
+fall.recover = 0
+
+[State 200, 1]
+type = HitDef
+triggerall = time >= 91
+triggerall=time%3=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 32 + ifelse(time<=106,40,0)
+hitflag = MAFD
+guardflag =
+pausetime = 1,50
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 812
+ground.hittime  = 15
+ground.velocity = -74,-4.5
+air.velocity = -74,-4
+Fall = 1
+kill=1
+;Envshake.time = 35
+fall.recover = 0
+p2stateno = 1030
+forcestand = 1
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = AnimTime = 0
+
+;------------------------------------------------------------------------------
+;Sparkahamehaha Loose
+[Statedef 28003]
+type = S
+movetype= A
+physics = S
+anim = 28003
+sprpriority = 2
+
+;[State 0, VelSet]
+;type = VelSet
+;trigger1 = AnimElem = 5
+;x=2*time
+
+
+[State 200, 1]
+type = HitDef
+triggerall=time%3=0
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 30 + ifelse(time<=15,60,0)
+hitflag = MAFD
+guardflag =
+pausetime = 1,50
+sparkno = 0
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S3,0
+guardsound = S2,0
+ground.type = High
+ground.slidetime = 812
+ground.hittime  = 15
+ground.velocity = -74,-4.5
+air.velocity = -74,-4
+Fall = 1
+kill=0
+;Envshake.time = 35
+fall.recover = 0
+p2stateno = 1030
+forcestand = 1
+
+
+
+[State 0, Helper Hit]
+type = RootMapAdd
+trigger1 = enemy, life = 0 
+map = "wonBySuper"
+value = 1
+
+[State 0, Helper Die]
+type = DestroySelf
+trigger1 = AnimTime = 0
