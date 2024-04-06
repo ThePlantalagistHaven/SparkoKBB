@@ -1,11 +1,9 @@
 # SparkoKBB
 Sparko's KBB Char Zip
 
-# KBB_Chars
-My characters for KBB. Enjoy!
-
 *Shoutouts!
 Slime
+Jon
 Chibber_489
 AzurBleak
 VolutoEighto
