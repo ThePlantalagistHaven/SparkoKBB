@@ -565,8 +565,8 @@ guardsound = S2,0
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = -4,-4.5
-air.velocity = 0,0
+ground.velocity = -5,-4.5
+air.velocity = -5,-3
 Fall = 0
 kill = 1
 Envshake.time = 35
@@ -1344,7 +1344,7 @@ triggerall = time%2= 0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
-damage    = 5
+damage    = 8
 hitflag = MAF
 pausetime = 5,22
 sparkno = 2
@@ -1453,7 +1453,7 @@ triggerall = time%8= 0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
-damage    = 1
+damage    = 3
 hitflag = MAF
 pausetime = 0,22
 sparkno = 0
@@ -1556,7 +1556,7 @@ triggerall = time%2= 0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
-damage    = 20
+damage    = 30
 hitflag = MAF
 pausetime = 0,22
 sparkno = 0
@@ -1747,7 +1747,7 @@ triggerall = time%2= 0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
-damage    = 1000
+damage    = 2000
 hitflag = MAF
 pausetime = 110,100
 sparkno = 0
@@ -2058,6 +2058,27 @@ volumescale = 500
 type = StopSnd
 trigger1 = AnimElem = 15
 channel = 260001
+
+[State 0, Viento]
+type = Explod
+;triggerall = numexplod(130) = 0
+triggerall = AnimElem = 5
+;triggerall = map(energyLevel) >= 359
+trigger1 = numexplod(2600062) < 1
+anim = 260000
+ID = 2600062
+pos = 0,-20
+postype = p1
+facing = 1
+vfacing = 0
+bindtime = -1
+removetime = 45
+scale = 2.1,2.1
+vel = 0,0
+sprpriority = 3
+ontop = 1
+ownpal = 0
+removeongethit = 1
 
 [State 200, 1]
 type = HitDef
@@ -2839,7 +2860,7 @@ triggerall=time%3=0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
-damage    = 32 + ifelse(time<=106,40,0)
+damage    = 32 + (enemy, pos x - root, pos x)/50
 hitflag = MAFD
 guardflag =
 pausetime = 1,50

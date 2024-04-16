@@ -875,7 +875,7 @@ animtype  = Light
 damage    = 10
 hitflag = MAFD
 guardflag = MAF
-pausetime = 8,9
+pausetime = 10,10
 guard.pausetime = 8,2
 sparkno = 0
 guard.sparkno = 13000
@@ -1060,6 +1060,7 @@ channel = 0
 [State 200, Attack!]
 type = HitDef
 triggerall = time%4=0
+triggerall = map(juggle) < 100
 trigger1 = 1
 attr = S, NA
 animtype  = Light
@@ -1264,13 +1265,18 @@ trigger1 = movecontact = 1
 y = -1
 x = 3
 
+[State 0, PlayerPush]
+type = PlayerPush
+trigger1 = Time <= 39
+value = 0
+
 [State 0, TargetBind]
 type = TargetBind
 triggerall = movecontact
 trigger1 = time < 39
 time = 1
 id = -1
-pos = 65,-8
+pos = 45,-8
 
 [State 200, 1]
 type = HitDef
@@ -1308,7 +1314,7 @@ type = ChangeState
 triggerall = power >= 1000
 triggerall = numhelper(3500) = 0
 triggerall = movecontact
-triggerall = command = "SPECIAL 1"
+triggerall = command = "SPECIAL 3"
 trigger1 = hitcount >=3
 trigger2 = time > 15
 value = 23000
@@ -1476,6 +1482,7 @@ x = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
@@ -1483,7 +1490,7 @@ animtype  = Light
 damage    = 5
 hitflag = MAFD
 guardflag = MAF
-pausetime = 8,8
+pausetime = 10,11
 sparkno = 0
 guard.sparkno = 13000
 sparkxy = -8,-25
@@ -1803,7 +1810,7 @@ type = ChangeState
 triggerall = power >= 1000
 triggerall = numhelper(3500) = 0
 triggerall = movecontact
-triggerall = command = "SPECIAL 1"
+triggerall = command = "SPECIAL 3"
 trigger1 = hitcount >=3
 trigger2 = time > 15
 value = 23000
@@ -1908,6 +1915,7 @@ ignorehitpause = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = AnimElem = 6
 trigger1 = 1
 attr = S, NA
@@ -1932,6 +1940,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = AnimElem = 9
 trigger1 = 1
 attr = S, HA
@@ -1956,6 +1965,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = AnimElem = 12
 trigger1 = 1
 attr = S, NA
@@ -2288,6 +2298,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = AnimElem = 2
 trigger1 = 1
 attr = S, HA
@@ -2312,6 +2323,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) < 181
 triggerall = AnimElem = 3
 trigger1 = 1
@@ -2338,6 +2350,7 @@ fall.recover = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) >= 181
 triggerall = map(energyLevel) < 359
 triggerall = AnimElem = 3
@@ -2365,6 +2378,7 @@ fall.recover = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) >= 359
 triggerall = AnimElem = 3
 trigger1 = 1
@@ -2716,6 +2730,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = time>0
 triggerall = time <16
 trigger1 = 1
@@ -2741,6 +2756,7 @@ Fall.recovertime = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) < 181
 triggerall = time = 16
 trigger1 = 1
@@ -2749,7 +2765,7 @@ animtype  = Medium
 damage    = 7
 hitflag = MAFD
 guardflag = MAF
-pausetime = 1,1
+pausetime = 11,11
 guard.pausetime = 1,1
 sparkno = 1
 guard.sparkno = 13000
@@ -2767,6 +2783,7 @@ fall.recover = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) >= 181
 triggerall = map(energyLevel) < 359
 triggerall = time = 16
@@ -2794,6 +2811,7 @@ fall.recover = 0
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = map(energyLevel) >= 359
 triggerall = time = 16
 trigger1 = 1
@@ -3568,6 +3586,7 @@ x = 5.6
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = Animelem = 5
 trigger1 = 1
 attr = S, NA
@@ -3575,7 +3594,7 @@ animtype  = Medium
 damage    = 20
 hitflag = MAFD
 guardflag = LAF
-pausetime = 8,10
+pausetime = 10,12
 sparkno = s10000
 guard.sparkno = s13000
 sparkxy = -8,-25
@@ -3589,6 +3608,7 @@ air.velocity = -.5,-2
 Fall = 0
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = Animelem = 10
 trigger1 = 1
 attr = S, NA
@@ -3716,13 +3736,14 @@ value = 75
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
 damage    = 15
 guardflag = HAF
-pausetime = 8,8
+pausetime = 10,10
 sparkno = 0;s11000
 guard.sparkno = s7000
 sparkxy = -8,-25
@@ -3829,13 +3850,14 @@ value = 40
 
 [State 200, 1]
 type = HitDef
+triggerall = map(juggle) < 100
 triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
 damage    = 15
 guardflag = HAF
-pausetime = 8,8
+pausetime = 10,10
 sparkno = 0;s11000
 guard.sparkno = s7000
 sparkxy = -8,-25
