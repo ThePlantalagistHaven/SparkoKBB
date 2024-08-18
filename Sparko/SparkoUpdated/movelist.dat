@@ -1,0 +1,139 @@
+<#f0f000>:Passive Abilities:</>
+
+Energy Gain								
+	"By mashing left and right, you can increase
+	the energy stored in your jewel. 
+	Reacts uniquely when using certain moves!"
+	
+<#f0f000>:UNIQUE NORMALS:</>
+_D^B
+_D-_AIR^B
+^A^A_-^B
+^A^A_-^B_-^C
+^A^A^A_-^B
+^A^A^A_-^B_-^C
+^A^A^A_-^C
+^A^A^A_-^C_-^A
+^A^A^A_-^C_-^B
+^A^A^A_-^C_-^A
+^A^A^A_-^C_-_AIR^A_-^A
+^A^A^A_-^C_-_AIR^A_-^B
+^A^A^A_-^C_-_AIR^A_-^c
+
+<#f0f000>:EX ATTACKS:</>
+
+"Energy Ball Blast" (1 Bar)							^C
+	"Sparko launches a ball of energy."
+
+"Energy Star Cannon" (1/4 Bar)							_AIR^C
+	"Sparko summons a large star of energy. 
+	Once it hits the ground an energy ball is launched."
+
+"Lightning Ball Bomb" (1/4 Bar)							_D^C
+	"Sparko slides a small orb that damages on impact.
+	After enough time passes, a lightning bolt is summoned. 
+	Can be destroyed to halt implosion. When Sparko's gem
+	is full, any orb that is destroyed by the opponent will
+	inflict the attacker with a shock effect, slowly 
+	damaging and stunning the enemy over a short period
+	of time."
+
+"Lightning Ball Bomb Aerial" (1/2 Bar)							_AIR_D^C
+	"Sparko does a cool spin, throwing a small orb of lightning. 
+	Slides farther since thrown from the air.
+	After enough time passes, a lightning bolt is summoned. 
+	Can be destroyed to halt implosion. When Sparko's gem
+	is full, any orb that is destroyed by the opponent will
+	inflict the attacker with a shock effect, slowly 
+	damaging and stunning the enemy over a short period
+	of time."
+
+<#f0f000>:STAR STRIKES!:</>
+
+Lightning Strike (1 Bar)					_D_DF_F^A
+	"Sparko summons a bolt of lightning 
+	over the opponent from the heavens!"
+_!Level 1:
+	"Sparko summons a single bolt of lightning.
+	Stuns the opponent on hit."
+_!Level 2:
+	"Sparko summons a several bolts of lightning, 
+	Stuns the opponent on hit, but for less time."
+_!Level 3:
+	"Sparko fires a giant lightning bolt, 
+	heavily damaging the opponent.
+	Stuns the opponent on hit.
+
+"Awakening Pulse!" (1 Bar, _AIR OK)					_D_DB_B^A
+	"Sparko launches any nearby opponents and awakens, 
+	shredding the opponent."
+_!Level 3:
+	"Any opponents damaged will be 
+	inflicted with a shock effect, slowing 
+	damaging and stunning the opponent over a 
+	short period of time."
+
+Shocking SmashDown (1/2 Bar, _AIR OK) 					_D_DF_F^B
+	"Sparko attempts to grab his opponent. If successfull,
+	Sparko follows up with several 
+	lightning-speed attacks, before
+	slamming his opponent into the ground."
+_!Level 1:
+	"Upon slamming the ground...
+	well nothing happens. Just a casual cute bounce."
+_!Level 2:
+	"Upon slamming the ground, a single lightning bolt 
+	strikes the opponent. 
+	Stuns the opponent on hit."
+_!Level 3:
+	"Upon slamming the ground, several bolts 
+	strike the opponent.
+	Stuns the opponent on hit, but for less time."
+
+Electric Beyblade (1 Bar) 				_D_DB_B^B
+	"Sparko spins into the opponent 
+	and shreds the opponent! Like a wheel!"
+_!Level 3:
+	"Any opponents damaged will be 
+	inflicted with a shock effect, slowing 
+	damaging and stunning the opponent over a 
+	short period of time."
+
+The Full Awakening (2 Bar, _AIR OK) 					_D_DF_F^C
+	"Sparko goes full DBZ and launches the opponent
+	around the stage before fully awakening, leading
+	to a powerful slam, sending the opponent hurtling
+	into the ground below."
+_!Level 1:
+	"After awakening, a single lightning bolt strikes
+	the opponent."
+_!Level 2:
+	"After awakening, a several lightning bolts strike
+	the opponent."
+_!Level 3:
+	"After awakening, a giant lightning bolt strikes
+	the opponent."
+
+Spirit Bomber (2 Bar, _AIR OK) 				_D_DB_B^C
+	"Sparko awakens, launching any nearby opponents
+	into the sky. After awakening, he summons a giant
+	orb of energy and throws it, shocking any nearby
+	opponents."
+
+Shocking Counter (1/2 Bar) 				_D_DB_B^X
+	"Sparko's inner turmoil rises. Any opponents who hit
+	him in this state will immediately be punished by a 
+	shocking burst of energy. Fully charges the energy 
+	in Sparko's jewel.."
+_!Level 3:
+	"Any opponents damaged will be 
+	inflicted with a shock effect, slowing 
+	damaging and stunning the opponent over a 
+	short period of time."
+
+The Sparkehameha (3 Bar, FULL ENERGY) 				_D_DB_B^C
+	"Sparko loses control, tapping into his 
+	inner turmoil. If the spasms are completed 
+	successfully, Sparko awakens and immediately 
+	charges a giant beam of energy, which heavily
+	damages the opponent. CANNOT be blocked."
